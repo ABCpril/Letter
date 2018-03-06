@@ -5,6 +5,7 @@ import com.angcyo.uiview.base.Item
 import com.angcyo.uiview.base.SingleItem
 import com.angcyo.uiview.dialog.UILoading
 import com.angcyo.uiview.kotlin.checkEmpty
+import com.angcyo.uiview.kotlin.setInputText
 import com.angcyo.uiview.kotlin.string
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.net.RException
@@ -13,6 +14,7 @@ import com.angcyo.uiview.utils.Tip
 import com.express.letter.R
 import com.express.letter.base.BaseItemUIView
 import com.express.letter.http.BaseSubscriber
+import com.express.letter.util.RHawk
 
 /**
  * Created by angcyo on 2018-03-04.
@@ -37,6 +39,7 @@ class LoginUIView : BaseItemUIView() {
                 holder.click(R.id.register_button) {
                     startIView(RegisterUIView())
                 }
+                username.setInputText(RHawk.getLoginUser())
 
                 holder.click(R.id.login_button) {
 
@@ -53,6 +56,7 @@ class LoginUIView : BaseItemUIView() {
                                     override fun onSucceed(bean: String?) {
                                         super.onSucceed(bean)
                                         Tip.tip("登录成功")
+                                        RHawk.saveLoginUser(username.string())
                                         //finishIView()
                                     }
 
