@@ -11,4 +11,8 @@ object RHawk {
     }
 
     fun getLoginUser() = Hawk.get<String>("saveLoginUser", "")
+
+    fun isLoginSucceed() = Hawk.get<Boolean>("isLoginSucceed", false)
+
+    fun setLoginSucceed(succeed: Boolean) = Hawk.put<Boolean>("isLoginSucceed", succeed)
 }

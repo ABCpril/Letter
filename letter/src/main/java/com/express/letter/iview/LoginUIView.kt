@@ -58,6 +58,7 @@ class LoginUIView : BaseItemUIView() {
                                         Tip.tip("登录成功")
                                         RHawk.saveLoginUser(username.string())
                                         //finishIView()
+                                        replaceIView(MainUIView())
                                     }
 
                                     override fun onError(code: Int, msg: String?) {

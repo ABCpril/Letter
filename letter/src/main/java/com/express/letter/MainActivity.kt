@@ -2,13 +2,23 @@ package com.express.letter
 
 import android.Manifest
 import android.content.Intent
+import com.angcyo.uiview.RCrashHandler
 import com.angcyo.uiview.base.UILayoutActivity
 import com.express.letter.iview.LoginUIView
+import com.express.letter.iview.MainUIView
+import com.express.letter.util.RHawk
 
 class MainActivity : UILayoutActivity() {
     override fun onLoadView(intent: Intent?) {
         checkPermissions()
-        startIView(LoginUIView())
+
+        if (RHawk.isLoginSucceed()) {
+            startIView(MainUIView(), false)
+        } else {
+            startIView(LoginUIView())
+        }
+
+        RCrashHandler.checkCrash(mLayout)
     }
 
     override fun needPermissions(): Array<String> {
