@@ -1,5 +1,6 @@
 package com.express.letter.iview
 
+import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.adapter.RExBaseAdapter
 import com.express.letter.base.BaseSingleRecyclerUIView
 
@@ -15,9 +16,16 @@ import com.express.letter.base.BaseSingleRecyclerUIView
  * Version: 1.0.0
  */
 class ContactsUIView : BaseSingleRecyclerUIView<String>() {
+    override fun getTitleBar(): TitleBarPattern {
+        return super.getTitleBar().setTitleString("联系人")
+    }
+
+    override fun getDefaultLayoutState(): LayoutState {
+        return LayoutState.CONTENT
+    }
+
     override fun createAdapter(): RExBaseAdapter<String, String, String> {
         return object : RExBaseAdapter<String, String, String>(mActivity) {
-
         }
     }
 

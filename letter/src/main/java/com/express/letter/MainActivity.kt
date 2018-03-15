@@ -2,17 +2,17 @@ package com.express.letter
 
 import android.Manifest
 import android.content.Intent
+import com.angcyo.hyphenate.REM
 import com.angcyo.uiview.RCrashHandler
 import com.angcyo.uiview.base.UILayoutActivity
 import com.express.letter.iview.LoginUIView
 import com.express.letter.iview.MainUIView
-import com.express.letter.util.RHawk
 
 class MainActivity : UILayoutActivity() {
     override fun onLoadView(intent: Intent?) {
         checkPermissions()
 
-        if (RHawk.isLoginSucceed()) {
+        if (REM.isLoggedIn()) {
             startIView(MainUIView(), false)
         } else {
             startIView(LoginUIView())

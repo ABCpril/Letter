@@ -19,15 +19,15 @@ import com.express.letter.R
  */
 class MainUIView : UINavigationView() {
     override fun createPages(pages: ArrayList<PageBean>) {
-        pages.add(PageBean(SessionUIView(), "消息",
+        pages.add(PageBean(com.express.letter.iview.SessionUIView(), "消息",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
                 R.drawable.session, R.drawable.session_c))
 
-        pages.add(PageBean(ContactsUIView(), "联系人",
+        pages.add(PageBean(com.express.letter.iview.ContactsUIView(), "联系人",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
                 R.drawable.contacts, R.drawable.contacts_c))
 
-        pages.add(PageBean(MeUIView(), "我的",
+        pages.add(PageBean(com.express.letter.iview.MeUIView(), "我的",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
                 R.drawable.me, R.drawable.me_c))
     }
