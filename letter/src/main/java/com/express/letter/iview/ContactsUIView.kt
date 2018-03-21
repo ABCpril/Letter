@@ -1,8 +1,13 @@
 package com.express.letter.iview
 
+import com.angcyo.hyphenate.REMContacts
 import com.angcyo.uiview.model.TitleBarPattern
-import com.angcyo.uiview.recycler.adapter.RExBaseAdapter
-import com.express.letter.base.BaseSingleRecyclerUIView
+import com.angcyo.uiview.recycler.adapter.RExItem
+import com.angcyo.uiview.utils.RUtils
+import com.express.letter.R
+import com.express.letter.base.BaseExItemUIView
+import com.express.letter.bean.ContactsItem
+import com.express.letter.holder.*
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -15,7 +20,8 @@ import com.express.letter.base.BaseSingleRecyclerUIView
  * 修改备注：
  * Version: 1.0.0
  */
-class ContactsUIView : BaseSingleRecyclerUIView<String>() {
+class ContactsUIView : BaseExItemUIView<ContactsItem>() {
+
     override fun getTitleBar(): TitleBarPattern {
         return super.getTitleBar().setTitleString("联系人")
     }
@@ -24,9 +30,43 @@ class ContactsUIView : BaseSingleRecyclerUIView<String>() {
         return LayoutState.CONTENT
     }
 
-    override fun createAdapter(): RExBaseAdapter<String, String, String> {
-        return object : RExBaseAdapter<String, String, String>(mActivity) {
-        }
+    override fun needLoadData(): Boolean {
+        return true
     }
 
+    override fun onUILoadData(page: Int, extend: String?) {
+        super.onUILoadData(page, extend)
+
+        postDelayed(300) {
+            resetUI()
+        }
+
+        val list = REMContacts.getAllContactsFromServer()
+
+        val datas = mutableListOf<ContactsItem>()
+        datas.add(ContactsItem("添加好友", ContactsItem.ADD))
+        datas.add(ContactsItem("好友验证", ContactsItem.ACCEPT))
+        datas.add(ContactsItem("群聊", ContactsItem.GROUP))
+
+        if (RUtils.isListEmpty(list)) {
+            datas.add(ContactsItem("暂无联系人...", ContactsItem.EMPTY))
+        } else {
+            for (c in list) {
+                datas.add(ContactsItem(c))
+            }
+        }
+        mExBaseAdapter.resetData(datas)
+    }
+
+    override fun registerItems(allRegItems: ArrayList<RExItem<String, ContactsItem>>) {
+        allRegItems.add(RExItem(ContactsItem.NORMAL, R.layout.item_contacts_layout, ContactsHolder::class.java))
+        allRegItems.add(RExItem(ContactsItem.EMPTY, R.layout.item_contacts_empty_layout, ContactsEmptyHolder::class.java))
+        allRegItems.add(RExItem(ContactsItem.ADD, R.layout.item_contacts_sys_layout, ContactsAddHolder::class.java))
+        allRegItems.add(RExItem(ContactsItem.ACCEPT, R.layout.item_contacts_sys_layout, ContactsAcceptHolder::class.java))
+        allRegItems.add(RExItem(ContactsItem.GROUP, R.layout.item_contacts_sys_layout, ContactsGroupHolder::class.java))
+    }
+
+    override fun getItemTypeFromData(data: ContactsItem): String {
+        return data.type
+    }
 }

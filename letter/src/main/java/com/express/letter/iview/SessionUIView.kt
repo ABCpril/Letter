@@ -40,8 +40,12 @@ class SessionUIView : BaseExItemUIView<ConversationItem>() {
     override fun onUILoadData(page: Int, extend: String?) {
         super.onUILoadData(page, extend)
 
+        postDelayed(300) {
+            resetUI()
+        }
+
         val allConversations = REMConversation.getAllConversations()
-        resetUI()
+
         if (RUtils.isListEmpty(allConversations)) {
             mExBaseAdapter.resetDataData(ConversationItem(EMPTY))
         } else {

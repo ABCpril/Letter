@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.angcyo.uiview.viewgroup.RLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/base_hdpi"
+    app:r_draw_line="BOTTOM">
+
+    <com.angcyo.uiview.widget.GlideImageView
+        android:id="@+id/glide_image_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_avatar_nan"/>
+
+    <com.angcyo.uiview.widget.RTextView
+        android:id="@+id/text_view"
+        style="@style/BaseMainTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/base_xhdpi"
+        tools:text="用户名"/>
+
+</com.angcyo.uiview.viewgroup.RLinearLayout>
