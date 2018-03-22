@@ -35,5 +35,8 @@ class MainUIView : UINavigationView() {
 
     override fun onViewShowFirst(bundle: Bundle?) {
         super.onViewShowFirst(bundle)
+        showNoReadNum(0, 1)
+        showNoReadNum(1, 200)
+        showNoReadNum(2, 99)
     }
 }
