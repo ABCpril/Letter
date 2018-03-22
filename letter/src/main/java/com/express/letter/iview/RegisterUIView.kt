@@ -20,6 +20,8 @@ import com.express.letter.http.BaseSubscriber
  */
 class RegisterUIView : BaseItemUIView() {
 
+    var onRegisterSuccess: ((String) -> Unit)? = null
+
     override fun getTitleBar(): TitleBarPattern {
         return super.getTitleBar()
                 .setTitleString("注册")
@@ -51,7 +53,9 @@ class RegisterUIView : BaseItemUIView() {
                                         override fun onSucceed(bean: String?) {
                                             super.onSucceed(bean)
                                             Tip.tip("注册成功")
-                                            finishIView()
+                                            finishIView {
+                                                onRegisterSuccess?.invoke(username.string())
+                                            }
                                         }
 
                                         override fun onEnd(isError: Boolean, isNoNetwork: Boolean, e: RException?) {

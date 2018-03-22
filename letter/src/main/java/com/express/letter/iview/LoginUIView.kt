@@ -36,7 +36,12 @@ class LoginUIView : BaseItemUIView() {
                 val password = holder.eV(R.id.password)
 
                 holder.click(R.id.register_button) {
-                    startIView(RegisterUIView())
+                    startIView(RegisterUIView().apply {
+                        onRegisterSuccess = {
+                            username.setInputText(it
+                            )
+                        }
+                    })
                 }
                 username.setInputText(RHawk.getLoginUser())
 
