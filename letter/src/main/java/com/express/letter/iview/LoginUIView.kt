@@ -38,8 +38,7 @@ class LoginUIView : BaseItemUIView() {
                 holder.click(R.id.register_button) {
                     startIView(RegisterUIView().apply {
                         onRegisterSuccess = {
-                            username.setInputText(it
-                            )
+                            username.setInputText(it)
                         }
                     })
                 }

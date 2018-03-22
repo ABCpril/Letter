@@ -1,7 +1,9 @@
 package com.express.letter.holder
 
+import com.angcyo.uiview.container.ILayout
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
+import com.angcyo.uiview.view.IView
 import com.express.letter.R
 import com.express.letter.bean.ContactsItem
 
@@ -17,8 +19,11 @@ import com.express.letter.bean.ContactsItem
  * Version: 1.0.0
  */
 open class BaseContactsHolder : RExItemHolder<ContactsItem>() {
+
     override fun onBindItemDataView(holder: RBaseViewHolder, posInData: Int, dataBean: ContactsItem) {
         holder.tv(R.id.text_view).text = dataBean.username
     }
+
+
 
 }
