@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/base_bg_selector_v21"
-    android:orientation="horizontal"
-    android:padding="@dimen/base_xhdpi">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-    <com.angcyo.uiview.widget.GlideImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/default_avatar"/>
-
-    <com.angcyo.uiview.widget.RTextView
-        android:id="@+id/user_name"
-        style="@style/BaseMainTextStyle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:background="@drawable/base_bg_selector_v21"
+        android:orientation="horizontal"
+        android:padding="@dimen/base_xhdpi">
+
+        <com.angcyo.uiview.widget.GlideImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_avatar"/>
+
+        <com.angcyo.uiview.widget.RTextView
+            android:id="@+id/user_name"
+            style="@style/BaseMainTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/base_xhdpi"/>
+
+    </LinearLayout>
+
+    <com.angcyo.uiview.widget.Button
+        android:id="@+id/button_view"
+        style="@style/BaseSkinButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/base_xhdpi"
+        android:layout_marginEnd="@dimen/base_xhdpi"
         android:layout_marginStart="@dimen/base_xhdpi"/>
 
-</LinearLayout>
+</FrameLayout>

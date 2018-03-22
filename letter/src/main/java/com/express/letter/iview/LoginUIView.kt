@@ -10,7 +10,6 @@ import com.angcyo.uiview.kotlin.string
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.net.RException
 import com.angcyo.uiview.recycler.RBaseViewHolder
-import com.angcyo.uiview.utils.Tip
 import com.express.letter.R
 import com.express.letter.base.BaseItemUIView
 import com.express.letter.http.BaseSubscriber
@@ -55,7 +54,7 @@ class LoginUIView : BaseItemUIView() {
 
                                     override fun onSucceed(bean: String?) {
                                         super.onSucceed(bean)
-                                        Tip.tip("登录成功")
+                                        //Tip.tip("登录成功")
                                         RHawk.saveLoginUser(username.string())
                                         //finishIView()
                                         replaceIView(MainUIView())

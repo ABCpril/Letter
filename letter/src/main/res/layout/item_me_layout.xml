@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <com.angcyo.uiview.widget.Button
+        android:id="@+id/button_view"
+        style="@style/BaseSkinButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/base_xhdpi"
+        android:layout_marginEnd="@dimen/base_xhdpi"
+        android:layout_marginStart="@dimen/base_xhdpi"/>
+
+</FrameLayout>
