@@ -35,29 +35,28 @@
         android:layout_margin="@dimen/base_hdpi"
         android:background="@color/transparent_dark20"/>
 
-    <com.angcyo.uiview.widget.NoReadNumView
-        android:id="@+id/no_read_num_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/base_hdpi"
-        android:background="@color/transparent_dark20"/>
+    <!--<com.angcyo.uiview.widget.NoReadNumView-->
+        <!--android:id="@+id/no_read_num_view2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_margin="@dimen/base_hdpi"-->
+        <!--android:background="@color/transparent_dark20"/>-->
 
-    <com.angcyo.uiview.widget.NoReadNumView
-        android:id="@+id/no_read_num_view3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/base_hdpi"
-        android:background="@color/transparent_dark20"/>
+    <!--<com.angcyo.uiview.widget.NoReadNumView-->
+        <!--android:id="@+id/no_read_num_view3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_margin="@dimen/base_hdpi"-->
+        <!--android:background="@color/transparent_dark20"/>-->
 
-    <com.angcyo.uiview.widget.NoReadNumView
-        android:id="@+id/no_read_num_view4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/base_hdpi"
-        android:background="@color/transparent_dark20"/>
-
+    <!--<com.angcyo.uiview.widget.NoReadNumView-->
+        <!--android:id="@+id/no_read_num_view4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_margin="@dimen/base_hdpi"-->
+        <!--android:background="@color/transparent_dark20"/>-->
 
 </com.angcyo.uiview.viewgroup.RLinearLayout>

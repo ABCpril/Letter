@@ -1,5 +1,6 @@
 package com.express.letter.holder
 
+import com.angcyo.uiview.manager.RNotifier
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.widget.NoReadNumView
 import com.express.letter.R
@@ -21,20 +22,24 @@ class ContactsAcceptHolder : BaseContactsHolder() {
         super.onBindItemDataView(holder, posInData, dataBean)
         holder.imgV(R.id.glide_image_view).setImageResource(R.drawable.ico_accept)
         val noReadNumView: NoReadNumView = holder.v(R.id.no_read_num_view)
-        noReadNumView.noReadNum = 0
+//        noReadNumView.noReadNum = 0
+//
+//        val noReadNumView2: NoReadNumView = holder.v(R.id.no_read_num_view2)
+//        noReadNumView2.noReadNum = 99
+//
+//        val noReadNumView3: NoReadNumView = holder.v(R.id.no_read_num_view3)
+//        noReadNumView3.noReadNum = 100
+//
+//        val noReadNumView4: NoReadNumView = holder.v(R.id.no_read_num_view4)
+//        noReadNumView4.noReadNum = 9
+//
+//        holder.postDelay(2000) {
+//            noReadNumView.noReadNum = 100
+//            noReadNumView3.noReadNum = 1
+//        }
 
-        val noReadNumView2: NoReadNumView = holder.v(R.id.no_read_num_view2)
-        noReadNumView2.noReadNum = 99
-
-        val noReadNumView3: NoReadNumView = holder.v(R.id.no_read_num_view3)
-        noReadNumView3.noReadNum = 100
-
-        val noReadNumView4: NoReadNumView = holder.v(R.id.no_read_num_view4)
-        noReadNumView4.noReadNum = 9
-
-        holder.postDelay(2000) {
-            noReadNumView.noReadNum = 100
-            noReadNumView3.noReadNum = 1
+        holder.clickItem {
+            RNotifier.instance().vibrateAndPlayTone()
         }
     }
 
