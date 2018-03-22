@@ -1,5 +1,6 @@
 package com.express.letter.iview
 
+import android.os.Bundle
 import com.angcyo.uiview.RApplication
 import com.angcyo.uiview.base.PageBean
 import com.angcyo.uiview.base.UINavigationView
@@ -30,5 +31,9 @@ class MainUIView : UINavigationView() {
         pages.add(PageBean(com.express.letter.iview.MeUIView(), "我的",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
                 R.drawable.me, R.drawable.me_c))
+    }
+
+    override fun onViewShowFirst(bundle: Bundle?) {
+        super.onViewShowFirst(bundle)
     }
 }

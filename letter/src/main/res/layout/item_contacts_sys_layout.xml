@@ -20,10 +20,18 @@
     <com.angcyo.uiview.widget.RTextView
         android:id="@+id/text_view"
         style="@style/BaseMainTextStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="@dimen/base_xhdpi"
+        android:layout_weight="1"
         tools:text="用户名"/>
+
+    <com.angcyo.uiview.widget.NoReadNumView
+        android:id="@+id/no_read_num_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/base_hdpi"/>
 
 </com.angcyo.uiview.viewgroup.RLinearLayout>
