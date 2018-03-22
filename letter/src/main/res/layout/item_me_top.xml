@@ -10,7 +10,7 @@
         android:background="@drawable/base_bg_selector_v21"
         android:orientation="horizontal"
         android:padding="@dimen/base_xhdpi"
-        app:r_background="@color/base_white">
+        app:r_background="@color/base_chat_bg_color">
 
         <com.angcyo.uiview.widget.GlideImageView
             android:layout_width="50dp"
