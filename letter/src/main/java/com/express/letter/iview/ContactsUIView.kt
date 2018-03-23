@@ -1,8 +1,11 @@
 package com.express.letter.iview
 
+import android.os.Bundle
+import com.angcyo.hyphenate.REM
 import com.angcyo.hyphenate.REMContacts
 import com.angcyo.realm.RRealm
 import com.angcyo.realm.bean.ContactInviteRealm
+import com.angcyo.uiview.manager.RNotifier
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.adapter.RBaseAdapter
 import com.angcyo.uiview.recycler.adapter.RExItem
@@ -12,6 +15,7 @@ import com.express.letter.R
 import com.express.letter.base.BaseExItemUIView
 import com.express.letter.bean.ContactsItem
 import com.express.letter.holder.*
+import io.realm.OrderedRealmCollectionChangeListener
 import io.realm.RealmResults
 
 /**
@@ -28,6 +32,12 @@ import io.realm.RealmResults
 class ContactsUIView : BaseExItemUIView<ContactsItem>() {
 
     lateinit var contactInviteRealmResults: RealmResults<ContactInviteRealm>
+    private val onContactInviteResultChangeListener = OrderedRealmCollectionChangeListener<RealmResults<ContactInviteRealm>> { _, _ ->
+        //更新好友验证 数量
+        //L.e("call: onViewLoad -> OrderedRealmCollectionChangeListener:${contactInviteRealmResults.size}:${result.size} insertions:${changeSet.insertions.size}")
+        RNotifier.instance().vibrateAndPlayTone()
+        mExBaseAdapter.notifyItemChanged(1)
+    }
 
     override fun getTitleBar(): TitleBarPattern {
         return super.getTitleBar().setTitleString("联系人")
@@ -44,12 +54,26 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
     override fun onViewLoad() {
         super.onViewLoad()
         RRealm.where {
-            contactInviteRealmResults = it.where(ContactInviteRealm::class.java).findAll()
-            contactInviteRealmResults.addChangeListener { _ ->
-                //更新好友验证 数量
-                mExBaseAdapter.notifyItemChanged(1)
-            }
+            contactInviteRealmResults = it.where(ContactInviteRealm::class.java)
+                    .equalTo("to_username", REM.getCurrentUserName())
+                    .findAll()
         }
+    }
+
+    override fun onViewShow(bundle: Bundle?, fromClz: Class<*>?) {
+        super.onViewShow(bundle, fromClz)
+        contactInviteRealmResults.addChangeListener(onContactInviteResultChangeListener)
+    }
+
+    override fun onViewShowNotFirst(bundle: Bundle?) {
+        super.onViewShowNotFirst(bundle)
+        onBaseLoadData()
+    }
+
+    override fun onViewHide() {
+        super.onViewHide()
+        contactInviteRealmResults.removeChangeListener(onContactInviteResultChangeListener)
+        contactInviteRealmResults.removeAllChangeListeners()
     }
 
     override fun initOnShowContentLayout() {

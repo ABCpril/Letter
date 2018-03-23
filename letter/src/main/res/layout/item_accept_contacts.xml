@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.angcyo.uiview.viewgroup.RLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/base_xhdpi"
+    app:r_draw_line="BOTTOM">
+
+    <com.angcyo.uiview.widget.GlideImageView
+        android:id="@+id/glide_image_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_avatar_nan"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/base_xhdpi"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.angcyo.uiview.widget.RTextView
+            android:id="@+id/text_view"
+            style="@style/BaseMainTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            tools:text="用户名"/>
+
+        <com.angcyo.uiview.widget.RTextView
+            android:id="@+id/tip_view"
+            style="@style/BaseSingleDarkTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="12dp"
+            tools:text="用户名"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_control_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.angcyo.uiview.widget.Button
+            android:id="@+id/accept_button"
+            style="@style/BaseSkinButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/base_xhdpi"
+            android:text="同意"
+            app:r_button_style="ROUND_BORDER_FILL"
+            app:r_use_skin_style="true"/>
+
+        <com.angcyo.uiview.widget.Button
+            android:id="@+id/decline_button"
+            style="@style/BaseSkinButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/base_xhdpi"
+            android:text="拒绝"
+            app:r_button_style="ROUND_BORDER_FILL"
+            app:r_use_skin_style="true"/>
+
+    </LinearLayout>
+
+</com.angcyo.uiview.viewgroup.RLinearLayout>

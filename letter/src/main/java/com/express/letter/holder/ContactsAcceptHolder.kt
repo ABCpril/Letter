@@ -1,10 +1,10 @@
 package com.express.letter.holder
 
-import com.angcyo.uiview.manager.RNotifier
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.widget.NoReadNumView
 import com.express.letter.R
 import com.express.letter.bean.ContactsItem
+import com.express.letter.iview.AcceptContactsUIView
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -47,7 +47,7 @@ class ContactsAcceptHolder : BaseContactsHolder() {
 //        }
 
         holder.clickItem {
-            RNotifier.instance().vibrateAndPlayTone()
+            startIView(AcceptContactsUIView())
         }
     }
 
