@@ -1,11 +1,10 @@
 package com.express.letter.holder
 
-import com.angcyo.uiview.container.ILayout
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
-import com.angcyo.uiview.view.IView
 import com.express.letter.R
 import com.express.letter.bean.ContactsItem
+import com.express.letter.iview.ContactsUIView
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -20,10 +19,10 @@ import com.express.letter.bean.ContactsItem
  */
 open class BaseContactsHolder : RExItemHolder<ContactsItem>() {
 
+    lateinit var contactsUIView: ContactsUIView
+
     override fun onBindItemDataView(holder: RBaseViewHolder, posInData: Int, dataBean: ContactsItem) {
         holder.tv(R.id.text_view).text = dataBean.username
     }
-
-
 
 }

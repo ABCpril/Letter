@@ -22,6 +22,14 @@ class ContactsAcceptHolder : BaseContactsHolder() {
         super.onBindItemDataView(holder, posInData, dataBean)
         holder.imgV(R.id.glide_image_view).setImageResource(R.drawable.ico_accept)
         val noReadNumView: NoReadNumView = holder.v(R.id.no_read_num_view)
+
+        val count = contactsUIView.contactInviteRealmResults.count { it.statue == 0 }
+        noReadNumView.noReadNum = if (count > 0) {
+            count
+        } else {
+            -1
+        }
+
 //        noReadNumView.noReadNum = 0
 //
 //        val noReadNumView2: NoReadNumView = holder.v(R.id.no_read_num_view2)

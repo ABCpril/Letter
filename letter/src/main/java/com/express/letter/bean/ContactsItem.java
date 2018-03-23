@@ -1,5 +1,7 @@
 package com.express.letter.bean;
 
+import android.text.TextUtils;
+
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
  * 项目名称：
@@ -35,5 +37,11 @@ public class ContactsItem {
 
     public ContactsItem(String username) {
         this.username = username;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return TextUtils.equals(type, ((ContactsItem) obj).type) &&
+                TextUtils.equals(username, ((ContactsItem) obj).username);
     }
 }

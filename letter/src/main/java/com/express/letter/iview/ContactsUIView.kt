@@ -1,13 +1,18 @@
 package com.express.letter.iview
 
 import com.angcyo.hyphenate.REMContacts
+import com.angcyo.realm.RRealm
+import com.angcyo.realm.bean.ContactInviteRealm
 import com.angcyo.uiview.model.TitleBarPattern
+import com.angcyo.uiview.recycler.adapter.RBaseAdapter
 import com.angcyo.uiview.recycler.adapter.RExItem
+import com.angcyo.uiview.recycler.adapter.RExItemHolder
 import com.angcyo.uiview.utils.RUtils
 import com.express.letter.R
 import com.express.letter.base.BaseExItemUIView
 import com.express.letter.bean.ContactsItem
 import com.express.letter.holder.*
+import io.realm.RealmResults
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -22,6 +27,8 @@ import com.express.letter.holder.*
  */
 class ContactsUIView : BaseExItemUIView<ContactsItem>() {
 
+    lateinit var contactInviteRealmResults: RealmResults<ContactInviteRealm>
+
     override fun getTitleBar(): TitleBarPattern {
         return super.getTitleBar().setTitleString("联系人")
     }
@@ -32,6 +39,17 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
 
     override fun needLoadData(): Boolean {
         return true
+    }
+
+    override fun onViewLoad() {
+        super.onViewLoad()
+        RRealm.where {
+            contactInviteRealmResults = it.where(ContactInviteRealm::class.java).findAll()
+            contactInviteRealmResults.addChangeListener { _ ->
+                //更新好友验证 数量
+                mExBaseAdapter.notifyItemChanged(1)
+            }
+        }
     }
 
     override fun initOnShowContentLayout() {
@@ -50,19 +68,37 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
         REMContacts.getAllContactsFromServer {
             val datas = mutableListOf<ContactsItem>()
 
+            datas.add(ContactsItem("添加好友", ContactsItem.ADD))
+            datas.add(ContactsItem("好友验证", ContactsItem.ACCEPT))
+            datas.add(ContactsItem("群聊", ContactsItem.GROUP))
+
             if (RUtils.isListEmpty(it)) {
                 datas.add(ContactsItem("暂无联系人...", ContactsItem.EMPTY))
             } else {
-                for (c in it) {
-                    datas.add(ContactsItem(c))
-                }
+                it.mapTo(datas) { ContactsItem(it) }
             }
-            mExBaseAdapter.appendAllData(datas)
+
+//            mExBaseAdapter.resetData(datas)
+
+            mExBaseAdapter.resetData(datas, object : RBaseAdapter.RDiffCallback<ContactsItem>() {
+                override fun areContentsTheSame(oldData: ContactsItem, newData: ContactsItem): Boolean {
+                    if (oldData.type == ContactsItem.ACCEPT || newData.type == ContactsItem.ACCEPT) {
+                        return false
+                    }
+                    return super.areContentsTheSame(oldData, newData)
+                }
+            })
 
             resetUI()
             ""
         }
+    }
 
+    override fun onCreateItemHolder(itemHolder: RExItemHolder<ContactsItem>) {
+        super.onCreateItemHolder(itemHolder)
+        if (itemHolder is BaseContactsHolder) {
+            itemHolder.contactsUIView = this
+        }
     }
 
     override fun registerItems(allRegItems: ArrayList<RExItem<String, ContactsItem>>) {

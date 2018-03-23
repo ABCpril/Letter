@@ -1,4 +1,5 @@
 apply from: 'key.gradle'
+apply plugin: 'realm-android'
 
 //android {
 //
