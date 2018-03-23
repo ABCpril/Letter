@@ -34,14 +34,21 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
         return true
     }
 
+    override fun initOnShowContentLayout() {
+        super.initOnShowContentLayout()
+        val datas = mutableListOf<ContactsItem>()
+        datas.add(ContactsItem("添加好友", ContactsItem.ADD))
+        datas.add(ContactsItem("好友验证", ContactsItem.ACCEPT))
+        datas.add(ContactsItem("群聊", ContactsItem.GROUP))
+
+        mExBaseAdapter.resetData(datas)
+    }
+
     override fun onUILoadData(page: Int, extend: String?) {
         super.onUILoadData(page, extend)
 
         REMContacts.getAllContactsFromServer {
             val datas = mutableListOf<ContactsItem>()
-            datas.add(ContactsItem("添加好友", ContactsItem.ADD))
-            datas.add(ContactsItem("好友验证", ContactsItem.ACCEPT))
-            datas.add(ContactsItem("群聊", ContactsItem.GROUP))
 
             if (RUtils.isListEmpty(it)) {
                 datas.add(ContactsItem("暂无联系人...", ContactsItem.EMPTY))
@@ -50,7 +57,7 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
                     datas.add(ContactsItem(c))
                 }
             }
-            mExBaseAdapter.resetData(datas)
+            mExBaseAdapter.appendAllData(datas)
 
             resetUI()
             ""

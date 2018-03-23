@@ -37,6 +37,11 @@ class SessionUIView : BaseExItemUIView<ConversationItem>() {
         return true
     }
 
+    override fun initOnShowContentLayout() {
+        super.initOnShowContentLayout()
+        mExBaseAdapter.resetDataData(ConversationItem(EMPTY))
+    }
+
     override fun onUILoadData(page: Int, extend: String?) {
         super.onUILoadData(page, extend)
 
