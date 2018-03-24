@@ -7,11 +7,13 @@ import com.angcyo.hyphenate.REMMessage
 import com.angcyo.uiview.container.ContentLayout
 import com.angcyo.uiview.iview.UIChatIView
 import com.angcyo.uiview.kotlin.onEmptyText
+import com.angcyo.uiview.recycler.RRecyclerView
 import com.angcyo.uiview.recycler.adapter.RExItem
 import com.angcyo.uiview.widget.Button
 import com.angcyo.uiview.widget.ExEditText
 import com.express.letter.R
 import com.express.letter.chat.holder.BaseChatHolder
+import com.express.letter.chat.holder.ChatTextHolder
 import com.hyphenate.chat.EMMessage
 
 /**
@@ -26,6 +28,7 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
 
     override fun registerItems(allRegItems: ArrayList<RExItem<String, EMMessage>>) {
         allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_TXT, R.layout.base_chat_item_layout, ChatTextHolder::class.java))
     }
 
     override fun getItemTypeFromData(data: EMMessage): String {
@@ -35,6 +38,13 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
     private fun clearButtonStatue() {
         addButton.setImageResource(R.drawable.ease_type_select_btn_nor)
         emojiButton.setImageResource(R.drawable.ease_chatting_biaoqing_btn_normal)
+    }
+
+    override fun onFastScrollToTop(recyclerView: RRecyclerView) {
+        super.onFastScrollToTop(recyclerView)
+        if (recyclerView.isLastItemVisible(true)) {
+            showSoftInput(inputEditText)
+        }
     }
 
     override fun afterInflateView(baseContentLayout: ContentLayout) {
@@ -79,7 +89,11 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
             softInputLayout.showEmojiLayout()
         }
         click(sendButton) {
-            inputEditText.setInputText("")
+            onSendButtonClick()
         }
+    }
+
+    open fun onSendButtonClick() {
+        inputEditText.setInputText("")
     }
 }

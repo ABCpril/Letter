@@ -1,6 +1,10 @@
 package com.express.letter.iview
 
 import android.os.Bundle
+import com.angcyo.hyphenate.REM
+import com.angcyo.hyphenate.REMConversation
+import com.angcyo.realm.RRealm
+import com.angcyo.realm.bean.ContactInviteRealm
 import com.angcyo.uiview.RApplication
 import com.angcyo.uiview.base.PageBean
 import com.angcyo.uiview.base.UINavigationView
@@ -31,6 +35,25 @@ class MainUIView : UINavigationView() {
         pages.add(PageBean(com.express.letter.iview.MeUIView(), "我的",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
                 R.drawable.me, R.drawable.me_c))
+    }
+
+    override fun onViewShow(bundle: Bundle?, fromClz: Class<*>?) {
+        super.onViewShow(bundle, fromClz)
+        updateNoReamMessageNum()
+    }
+
+    /**更新未读消息数量*/
+    fun updateNoReamMessageNum() {
+        val msgCount = REMConversation.getAllUnreadMsgCount()
+        showNoReadNum(0, if (msgCount == 0) -1 else msgCount)
+
+        RRealm.where {
+            val count = it.where(ContactInviteRealm::class.java)
+                    .equalTo("to_username", REM.getCurrentUserName())
+                    .findAll().count { it.statue == 0 }
+
+            showNoReadNum(1, if (count == 0) -1 else count)
+        }
     }
 
     override fun onViewShowFirst(bundle: Bundle?) {
