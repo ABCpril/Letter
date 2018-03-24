@@ -21,7 +21,7 @@ class AcceptContactsUIView : BaseExItemUIView<ContactInviteRealm>() {
 
     override fun registerItems(allRegItems: ArrayList<RExItem<String, ContactInviteRealm>>) {
         allRegItems.add(RExItem("", R.layout.item_accept_contacts, AcceptContactsHolder::class.java))
-        allRegItems.add(RExItem("empty", R.layout.item_accept_contacts_empty_layout, AcceptContactsHolder::class.java))
+        allRegItems.add(RExItem("empty", R.layout.item_accept_contacts_empty_layout, AcceptContactsEmptyHolder::class.java))
     }
 
     override fun getItemTypeFromData(data: ContactInviteRealm): String {

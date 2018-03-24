@@ -87,7 +87,7 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
     }
 
     override fun onUILoadData(page: Int, extend: String?) {
-        super.onUILoadData(page, extend)
+        //super.onUILoadData(page, extend)
 
         REMContacts.getAllContactsFromServer {
             val datas = mutableListOf<ContactsItem>()
