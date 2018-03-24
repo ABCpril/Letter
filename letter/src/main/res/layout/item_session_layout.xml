@@ -36,7 +36,7 @@
 
         <com.angcyo.uiview.widget.RTextView
             android:id="@+id/tip_view"
-            style="@style/BaseDarkTextStyle"
+            style="@style/BaseSingleDarkTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_ldpi"
