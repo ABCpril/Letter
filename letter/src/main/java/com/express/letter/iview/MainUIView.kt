@@ -3,13 +3,17 @@ package com.express.letter.iview
 import android.os.Bundle
 import com.angcyo.hyphenate.REM
 import com.angcyo.hyphenate.REMConversation
+import com.angcyo.hyphenate.REMMessage
+import com.angcyo.hyphenate.listener.REMMessageListener
 import com.angcyo.realm.RRealm
 import com.angcyo.realm.bean.ContactInviteRealm
 import com.angcyo.uiview.RApplication
 import com.angcyo.uiview.base.PageBean
 import com.angcyo.uiview.base.UINavigationView
+import com.angcyo.uiview.container.UIParam
 import com.angcyo.uiview.skin.SkinHelper
 import com.express.letter.R
+import com.hyphenate.chat.EMMessage
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -23,6 +27,14 @@ import com.express.letter.R
  * Version: 1.0.0
  */
 class MainUIView : UINavigationView() {
+
+    val messageListener = object : REMMessageListener() {
+        override fun onNewMessage(messages: MutableList<EMMessage>) {
+            super.onNewMessage(messages)
+            updateNoReamMessageNum()
+        }
+    }
+
     override fun createPages(pages: ArrayList<PageBean>) {
         pages.add(PageBean(com.express.letter.iview.SessionUIView(), "消息",
                 RApplication.getApp().resources.getColor(com.angcyo.uiview.R.color.base_text_color), SkinHelper.getSkin().themeColor,
@@ -61,5 +73,15 @@ class MainUIView : UINavigationView() {
 //        showNoReadNum(0, 1)
 //        showNoReadNum(1, 200)
 //        showNoReadNum(2, 99)
+    }
+
+    override fun onViewLoad() {
+        super.onViewLoad()
+        REMMessage.addMessageListener(messageListener)
+    }
+
+    override fun onViewUnload(uiParam: UIParam?) {
+        super.onViewUnload(uiParam)
+        REMMessage.removeMessageListener(messageListener)
     }
 }

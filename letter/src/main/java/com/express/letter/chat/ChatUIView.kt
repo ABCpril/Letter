@@ -2,7 +2,11 @@ package com.express.letter.chat
 
 import android.text.TextUtils
 import com.angcyo.hyphenate.REMCallBack
+import com.angcyo.hyphenate.REMConversation
 import com.angcyo.hyphenate.REMMessage
+import com.angcyo.hyphenate.REMMessage.addMessageListener
+import com.angcyo.hyphenate.REMMessage.removeMessageListener
+import com.angcyo.hyphenate.listener.REMMessageListener
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
 import com.express.letter.BuildConfig
 import com.express.letter.base.BaseChatUIView
@@ -16,6 +20,29 @@ import com.hyphenate.chat.EMMessage
 open class ChatUIView(val username: String,
                       val type: EMConversation.EMConversationType = EMConversation.EMConversationType.Chat)
     : BaseChatUIView() {
+
+    init {
+        REMMessage.instance().currentChatUserName = username
+        REMConversation.markAllMessagesAsRead(username)
+    }
+
+    val messageListener = object : REMMessageListener() {
+        override fun onNewMessage(messages: MutableList<EMMessage>) {
+            super.onNewMessage(messages)
+            this@ChatUIView.onNewMessage(messages)
+        }
+    }
+
+    /**收到新的消息*/
+    open fun onNewMessage(messages: MutableList<EMMessage>) {
+        val list = (0 until messages.size)
+                .map { messages[it] }
+                .filter { TextUtils.equals(it.from, username) }
+
+        mExBaseAdapter.appendAllData(list)
+        scrollToLastBottom()
+    }
+
     override fun getTitleString(): String {
         return username
     }
@@ -51,4 +78,16 @@ open class ChatUIView(val username: String,
             super.onSendButtonClick()
         }
     }
+
+    override fun initOnShowContentLayout() {
+        super.initOnShowContentLayout()
+        addMessageListener(messageListener)
+    }
+
+    override fun onViewUnload() {
+        super.onViewUnload()
+        removeMessageListener(messageListener)
+        REMMessage.instance().currentChatUserName = ""
+    }
+
 }

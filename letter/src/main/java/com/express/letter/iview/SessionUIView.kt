@@ -1,6 +1,10 @@
 package com.express.letter.iview
 
+import android.os.Bundle
 import com.angcyo.hyphenate.REMConversation
+import com.angcyo.hyphenate.REMMessage
+import com.angcyo.hyphenate.listener.REMMessageListener
+import com.angcyo.uiview.container.UIParam
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.adapter.RExItem
 import com.angcyo.uiview.utils.RUtils
@@ -11,6 +15,7 @@ import com.express.letter.bean.ConversationItem.EMPTY
 import com.express.letter.bean.ConversationItem.NORMAL
 import com.express.letter.holder.SessionEmptyHolder
 import com.express.letter.holder.SessionHolder
+import com.hyphenate.chat.EMMessage
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -24,6 +29,13 @@ import com.express.letter.holder.SessionHolder
  * Version: 1.0.0
  */
 class SessionUIView : BaseExItemUIView<ConversationItem>() {
+
+    val messageListener = object : REMMessageListener() {
+        override fun onNewMessage(messages: MutableList<EMMessage>) {
+            super.onNewMessage(messages)
+            onBaseLoadData()
+        }
+    }
 
     override fun getTitleBar(): TitleBarPattern {
         return super.getTitleBar().setTitleString("消息")
@@ -43,7 +55,7 @@ class SessionUIView : BaseExItemUIView<ConversationItem>() {
     }
 
     override fun onUILoadData(page: Int, extend: String?) {
-        super.onUILoadData(page, extend)
+        //super.onUILoadData(page, extend)
 
         postDelayed(300) {
             resetUI()
@@ -69,5 +81,20 @@ class SessionUIView : BaseExItemUIView<ConversationItem>() {
 
     override fun getItemTypeFromData(data: ConversationItem): String {
         return data.ConversationType
+    }
+
+    override fun onViewShowNotFirst(bundle: Bundle?) {
+        super.onViewShowNotFirst(bundle)
+        onBaseLoadData()
+    }
+
+    override fun onViewLoad() {
+        super.onViewLoad()
+        REMMessage.addMessageListener(messageListener)
+    }
+
+    override fun onViewUnload(uiParam: UIParam?) {
+        super.onViewUnload(uiParam)
+        REMMessage.removeMessageListener(messageListener)
     }
 }

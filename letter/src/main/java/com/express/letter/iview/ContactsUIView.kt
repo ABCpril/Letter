@@ -5,7 +5,6 @@ import com.angcyo.hyphenate.REM
 import com.angcyo.hyphenate.REMContacts
 import com.angcyo.realm.RRealm
 import com.angcyo.realm.bean.ContactInviteRealm
-import com.angcyo.uiview.manager.RNotifier
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.adapter.RBaseAdapter
 import com.angcyo.uiview.recycler.adapter.RExItem
@@ -35,7 +34,6 @@ class ContactsUIView : BaseExItemUIView<ContactsItem>() {
     private val onContactInviteResultChangeListener = OrderedRealmCollectionChangeListener<RealmResults<ContactInviteRealm>> { _, _ ->
         //更新好友验证 数量
         //L.e("call: onViewLoad -> OrderedRealmCollectionChangeListener:${contactInviteRealmResults.size}:${result.size} insertions:${changeSet.insertions.size}")
-        RNotifier.instance().vibrateAndPlayTone()
         mExBaseAdapter.notifyItemChanged(1)
     }
 

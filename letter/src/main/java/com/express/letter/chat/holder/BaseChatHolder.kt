@@ -45,7 +45,12 @@ open class BaseChatHolder : BaseItemHolder<EMMessage>() {
         }
 
         //用户名显示
-        holder.tv(R.id.user_name_view).text = dataBean.userName
+        holder.tv(R.id.user_name_view).text = dataBean.from /* if (dataBean.direct() == EMMessage.Direct.SEND) {
+            dataBean.userName
+        } else {
+            dataBean.from
+        }*/
+
         if (BuildConfig.DEBUG) {
         } else {
             chatUIView?.let {
