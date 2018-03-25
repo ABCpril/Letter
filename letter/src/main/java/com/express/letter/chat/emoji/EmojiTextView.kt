@@ -16,7 +16,7 @@ import com.angcyo.uiview.widget.RExTextView
 class EmojiTextView(context: Context, attributeSet: AttributeSet? = null) : RExTextView(context, attributeSet) {
 
     companion object {
-        val emojiSize = 50
+        val emojiSize = 45
 
         fun getDrawable(context: Context, icoRes: Int): Drawable {
             return ContextCompat.getDrawable(context, icoRes)!!

@@ -12,6 +12,8 @@ import com.angcyo.uiview.recycler.adapter.RExItem
 import com.angcyo.uiview.widget.Button
 import com.angcyo.uiview.widget.ExEditText
 import com.express.letter.R
+import com.express.letter.chat.emoji.CommandAdapter
+import com.express.letter.chat.emoji.CommandItem
 import com.express.letter.chat.emoji.EmojiAdapter
 import com.express.letter.chat.emoji.EmojiTextView
 import com.express.letter.chat.holder.BaseChatHolder
@@ -28,6 +30,13 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
     lateinit var emojiButton: ImageView
     lateinit var sendButton: Button
     lateinit var emojiRecyclerView: RRecyclerView
+
+    companion object {
+        //表情
+        const val EMOJI_TYPE_EMOJI = 1
+        //功能
+        const val EMOJI_TYPE_COMMAND = 2
+    }
 
     override fun registerItems(allRegItems: ArrayList<RExItem<String, EMMessage>>) {
         allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
@@ -65,12 +74,29 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
         super.initEmojiLayout(chatEmojiRootFrameLayout, inflater)
         inflater.inflate(R.layout.base_chat_emoji_layout, chatEmojiRootFrameLayout)
         emojiRecyclerView = chatEmojiRootFrameLayout.findViewById(R.id.emoji_recycler_view)
-        emojiRecyclerView.adapter = EmojiAdapter(mActivity).apply {
-            onEmojiClick = {
-                inputEditText.insert(it.emojiText)
-                EmojiTextView.showEmoji(inputEditText)
+    }
+
+    open fun changeEmojiLayoutTo(type: Int) {
+        when (type) {
+            EMOJI_TYPE_EMOJI -> {
+                emojiRecyclerView.tag = "GV8"
+                emojiRecyclerView.adapter = EmojiAdapter(mActivity).apply {
+                    onEmojiClick = {
+                        inputEditText.insert(it.emojiText)
+                        EmojiTextView.showEmoji(inputEditText)
+                    }
+                }
+            }
+            EMOJI_TYPE_COMMAND -> {
+                emojiRecyclerView.tag = "GV4"
+                emojiRecyclerView.adapter = CommandAdapter(mActivity, getCommandItems())
             }
         }
+    }
+
+    open fun getCommandItems(): List<CommandItem> {
+        val items = mutableListOf<CommandItem>()
+        return items
     }
 
     override fun onEmojiLayoutChange(isEmojiShow: Boolean, isKeyboardShow: Boolean, height: Int) {
@@ -91,11 +117,13 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
         click(addButton) {
             clearButtonStatue()
             addButton.setImageResource(R.drawable.ease_type_select_btn_pressed)
+            changeEmojiLayoutTo(EMOJI_TYPE_COMMAND)
             softInputLayout.showEmojiLayout()
         }
         click(emojiButton) {
             clearButtonStatue()
             emojiButton.setImageResource(R.drawable.ease_chatting_biaoqing_btn_enable)
+            changeEmojiLayoutTo(EMOJI_TYPE_EMOJI)
             softInputLayout.showEmojiLayout()
         }
         click(sendButton) {
