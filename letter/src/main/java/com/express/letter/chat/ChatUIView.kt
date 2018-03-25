@@ -76,15 +76,21 @@ open class ChatUIView(val username: String,
         }
     }
 
+    //添加消息到最后, 并且滚动到底部
+    override fun addMessageToLast(dataBea: EMMessage) {
+        super.addMessageToLast(dataBea)
+        //动态监听消息发送的状态
+        dataBea.setMessageStatusCallback(object : REMCallBack() {
+            override fun onResult(isError: Boolean, code: Int, message: String?) {
+                mExBaseAdapter.notifyItemChanged(dataBea)
+            }
+        })
+    }
+
+    //点击发送消息按钮
     override fun onSendButtonClick() {
         val sendMessage = REMMessage.sendMessage(inputEditText.string(), username, type == EMConversation.EMConversationType.GroupChat)
         addMessageToLast(sendMessage)
-
-        sendMessage.setMessageStatusCallback(object : REMCallBack() {
-            override fun onResult(isError: Boolean, code: Int, message: String?) {
-                mExBaseAdapter.notifyItemChanged(sendMessage)
-            }
-        })
 
         if (BuildConfig.DEBUG) {
         } else {
