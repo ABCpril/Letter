@@ -109,7 +109,7 @@ open class ChatUIView(val username: String,
     override fun getCommandItems(): List<CommandItem> {
         val items = mutableListOf<CommandItem>()
 //        if (BuildConfig.DEBUG) {
-        items.add(CommandItem(R.drawable.ease_chat_takepic_normal, "拍照", View.OnClickListener { }))
+        //items.add(CommandItem(R.drawable.ease_chat_takepic_normal, "拍照", View.OnClickListener { }))
         items.add(CommandItem(R.drawable.ease_chat_image_normal, "图片", View.OnClickListener {
             ImagePickerHelper.startImagePicker(mActivity, true, 9, ImageDataSource.IMAGE)
         }))

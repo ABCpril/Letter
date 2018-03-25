@@ -17,6 +17,8 @@ import com.express.letter.chat.emoji.CommandItem
 import com.express.letter.chat.emoji.EmojiAdapter
 import com.express.letter.chat.emoji.EmojiTextView
 import com.express.letter.chat.holder.BaseChatHolder
+import com.express.letter.chat.holder.ChatFileHolder
+import com.express.letter.chat.holder.ChatImageHolder
 import com.express.letter.chat.holder.ChatTextHolder
 import com.hyphenate.chat.EMMessage
 
@@ -41,6 +43,13 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
     override fun registerItems(allRegItems: ArrayList<RExItem<String, EMMessage>>) {
         allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
         allRegItems.add(RExItem(REMMessage.M_TYPE_TXT, R.layout.base_chat_item_layout, ChatTextHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_FILE, R.layout.base_chat_item_layout, ChatFileHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_IMAGE, R.layout.base_chat_item_layout, ChatImageHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_VIDEO, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_VOICE, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_LOCATION, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.EX_TYPE, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
     }
 
     override fun getItemTypeFromData(data: EMMessage): String {
