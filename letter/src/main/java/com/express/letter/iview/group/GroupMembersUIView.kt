@@ -26,8 +26,8 @@ class GroupMembersUIView(val groupId: String) : BaseExItemUIView<String>() {
 
     override fun onUILoadData(page: Int, extend: String?) {
         super.onUILoadData(page, extend)
-        add(REMGroupManager.getGroup(groupId) {
-            onUILoadFinish(it.members)
+        add(REMGroupManager.fetchGroupMembers(groupId) {
+            onUILoadFinish(it)
             ""
         })
     }

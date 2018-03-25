@@ -4,9 +4,10 @@
              android:layout_height="match_parent"
              android:background="@color/transparent_dark40">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="表情布局"/>
+    <com.angcyo.uiview.recycler.RRecyclerView
+        android:id="@+id/emoji_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="GV8"/>
 
 </FrameLayout>

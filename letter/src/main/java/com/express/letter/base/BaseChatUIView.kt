@@ -12,6 +12,8 @@ import com.angcyo.uiview.recycler.adapter.RExItem
 import com.angcyo.uiview.widget.Button
 import com.angcyo.uiview.widget.ExEditText
 import com.express.letter.R
+import com.express.letter.chat.emoji.EmojiAdapter
+import com.express.letter.chat.emoji.EmojiTextView
 import com.express.letter.chat.holder.BaseChatHolder
 import com.express.letter.chat.holder.ChatTextHolder
 import com.hyphenate.chat.EMMessage
@@ -25,6 +27,7 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
     lateinit var addButton: ImageView
     lateinit var emojiButton: ImageView
     lateinit var sendButton: Button
+    lateinit var emojiRecyclerView: RRecyclerView
 
     override fun registerItems(allRegItems: ArrayList<RExItem<String, EMMessage>>) {
         allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
@@ -61,11 +64,18 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
     override fun initEmojiLayout(chatEmojiRootFrameLayout: FrameLayout, inflater: LayoutInflater) {
         super.initEmojiLayout(chatEmojiRootFrameLayout, inflater)
         inflater.inflate(R.layout.base_chat_emoji_layout, chatEmojiRootFrameLayout)
+        emojiRecyclerView = chatEmojiRootFrameLayout.findViewById(R.id.emoji_recycler_view)
+        emojiRecyclerView.adapter = EmojiAdapter(mActivity).apply {
+            onEmojiClick = {
+                inputEditText.insert(it.emojiText)
+                EmojiTextView.showEmoji(inputEditText)
+            }
+        }
     }
 
     override fun onEmojiLayoutChange(isEmojiShow: Boolean, isKeyboardShow: Boolean, height: Int) {
         super.onEmojiLayoutChange(isEmojiShow, isKeyboardShow, height)
-        if (isKeyboardShow) {
+        if (isKeyboardShow || !isEmojiShow) {
             clearButtonStatue()
         }
     }

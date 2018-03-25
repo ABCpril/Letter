@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.angcyo.uiview.widget.RExTextView
+<com.express.letter.chat.emoji.EmojiTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/message_content_text_view"
@@ -13,4 +13,4 @@
     android:paddingTop="@dimen/base_ldpi"
     tools:text="angcyo">
 
-</com.angcyo.uiview.widget.RExTextView>
+</com.express.letter.chat.emoji.EmojiTextView>

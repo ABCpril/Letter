@@ -34,13 +34,13 @@
             android:layout_height="wrap_content"
             tools:text="用户名"/>
 
-        <com.angcyo.uiview.widget.RTextView
+        <com.express.letter.chat.emoji.EmojiTextView
             android:id="@+id/tip_view"
             style="@style/BaseSingleDarkTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_ldpi"
-            tools:text="用户名"/>
+            tools:text="最后一条消息"/>
 
     </LinearLayout>
 
