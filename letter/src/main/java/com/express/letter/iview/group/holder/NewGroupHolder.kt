@@ -3,6 +3,7 @@ package com.express.letter.iview.group.holder
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.express.letter.R
 import com.express.letter.bean.GroupItem
+import com.express.letter.iview.group.NewGroupUIVIew
 
 /**
  * Created by angcyo on 2018/03/25 08:47
@@ -15,7 +16,7 @@ class NewGroupHolder : BaseGroupHolder() {
         holder.imgV(R.id.glide_image_view).setImageResource(R.drawable.ico_new_group)
 
         holder.clickItem {
-
+            startIView(NewGroupUIVIew())
         }
     }
 }

@@ -28,7 +28,7 @@ import io.realm.RealmResults
  * 修改备注：
  * Version: 1.0.0
  */
-class ContactsUIView : BaseExItemUIView<ContactsItem>() {
+open class ContactsUIView : BaseExItemUIView<ContactsItem>() {
 
     lateinit var contactInviteRealmResults: RealmResults<ContactInviteRealm>
     private val onContactInviteResultChangeListener = OrderedRealmCollectionChangeListener<RealmResults<ContactInviteRealm>> { _, _ ->

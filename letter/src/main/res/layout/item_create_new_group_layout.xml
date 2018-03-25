@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/base_chat_bg_color"
+              android:orientation="vertical"
+              android:padding="@dimen/base_xhdpi">
+
+    <com.angcyo.uiview.widget.ExEditText
+        android:id="@+id/group_name_edit"
+        style="@style/BaseInputEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_white_round_bg_5x"
+        android:hint="请输入群聊名称"
+        android:singleLine="true"/>
+
+    <com.angcyo.uiview.widget.ExEditText
+        android:id="@+id/group_des_edit"
+        style="@style/BaseInputEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/base_xhdpi"
+        android:background="@drawable/base_white_round_bg_5x"
+        android:gravity="top"
+        android:hint="请输入群聊描述"/>
+
+</LinearLayout>

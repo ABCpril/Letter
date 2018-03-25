@@ -1,6 +1,7 @@
 package com.express.letter.holder
 
 import android.text.TextUtils
+import com.angcyo.hyphenate.REM
 import com.angcyo.hyphenate.REMMessage
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
@@ -8,6 +9,7 @@ import com.angcyo.uiview.widget.NoReadNumView
 import com.express.letter.R
 import com.express.letter.bean.ConversationItem
 import com.express.letter.chat.ChatUIView
+import com.express.letter.chat.GroupChatUIView
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMConversation
 
@@ -30,18 +32,29 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
         //显示的名字
         var username = conversation.conversationId()
         if (conversation.type == EMConversation.EMConversationType.GroupChat) {
+            holder.imageView(R.id.glide_image_view).setImageResource(R.drawable.ico_group_avatar)
+
             val group = EMClient.getInstance().groupManager().getGroup(username)
             username = if (group != null) group.groupName else username
+
+            //最后一条消息显示
+            holder.tv(R.id.tip_view).text = "${if (TextUtils.equals(REM.getCurrentUserName(), lastMessage.from)) "我" else lastMessage.from}" +
+                    ":${REMMessage.getMessageDigest(lastMessage)}"
         } else if (conversation.type == EMConversation.EMConversationType.ChatRoom) {
+            holder.imageView(R.id.glide_image_view).setImageResource(R.drawable.default_avatar_nan)
+
             val room = EMClient.getInstance().chatroomManager().getChatRoom(username)
             username = if (room != null && !TextUtils.isEmpty(room.name)) room.name else username
+
+            //最后一条消息显示
+            holder.tv(R.id.tip_view).text = "${if (TextUtils.equals(REM.getCurrentUserName(), lastMessage.from)) "我" else lastMessage.from}" +
+                    ":${REMMessage.getMessageDigest(lastMessage)}"
         } else {
 
+            //最后一条消息显示
+            holder.tv(R.id.tip_view).text = REMMessage.getMessageDigest(lastMessage)
         }
         holder.tv(R.id.name_view).text = username //lastMessage.from
-
-        //最后一条消息显示
-        holder.tv(R.id.tip_view).text = REMMessage.getMessageDigest(lastMessage)
 
         //消息时间显示
         holder.timeV(R.id.time_view).time = lastMessage.msgTime
@@ -53,7 +66,11 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
 
         //点击跳转
         holder.clickItem {
-            startIView(ChatUIView(username))
+            if (conversation.type == EMConversation.EMConversationType.GroupChat) {
+                startIView(GroupChatUIView(conversation.conversationId(), username))
+            } else {
+                startIView(ChatUIView(username))
+            }
         }
     }
 }

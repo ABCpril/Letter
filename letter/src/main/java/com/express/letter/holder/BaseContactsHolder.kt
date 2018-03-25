@@ -19,7 +19,7 @@ import com.express.letter.iview.ContactsUIView
  */
 open class BaseContactsHolder : RExItemHolder<ContactsItem>() {
 
-    lateinit var contactsUIView: ContactsUIView
+    var contactsUIView: ContactsUIView? = null
 
     override fun onBindItemDataView(holder: RBaseViewHolder, posInData: Int, dataBean: ContactsItem) {
         holder.tv(R.id.text_view).text = dataBean.username

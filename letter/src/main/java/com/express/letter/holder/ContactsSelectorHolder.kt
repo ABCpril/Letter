@@ -1,8 +1,8 @@
 package com.express.letter.holder
 
 import com.angcyo.uiview.recycler.RBaseViewHolder
+import com.express.letter.R
 import com.express.letter.bean.ContactsItem
-import com.express.letter.chat.ChatUIView
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -15,12 +15,14 @@ import com.express.letter.chat.ChatUIView
  * 修改备注：
  * Version: 1.0.0
  */
-open class ContactsHolder : BaseContactsHolder() {
+class ContactsSelectorHolder : ContactsHolder() {
     override fun onBindItemDataView(holder: RBaseViewHolder, posInData: Int, dataBean: ContactsItem) {
         super.onBindItemDataView(holder, posInData, dataBean)
 
+        holder.visible(R.id.checkbox)
+
         holder.clickItem {
-            startIView(ChatUIView(dataBean.username))
+            exItemAdapter?.setSelectorPosition(posInData, holder.v(R.id.checkbox))
         }
     }
 

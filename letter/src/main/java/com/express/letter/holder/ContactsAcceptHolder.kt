@@ -23,7 +23,7 @@ class ContactsAcceptHolder : BaseContactsHolder() {
         holder.imgV(R.id.glide_image_view).setImageResource(R.drawable.ico_accept)
         val noReadNumView: NoReadNumView = holder.v(R.id.no_read_num_view)
 
-        val count = contactsUIView.contactInviteRealmResults.count { it.statue == 0 }
+        val count = contactsUIView?.contactInviteRealmResults?.count { it.statue == 0 } ?: 0
         noReadNumView.noReadNum = if (count > 0) {
             count
         } else {

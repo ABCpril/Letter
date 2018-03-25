@@ -3,6 +3,7 @@ package com.express.letter.iview.group.holder
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.express.letter.R
 import com.express.letter.bean.GroupItem
+import com.express.letter.chat.GroupChatUIView
 
 /**
  * Created by angcyo on 2018/03/25 09:23
@@ -15,6 +16,7 @@ class GroupHolder : BaseGroupHolder() {
 
         holder.clickItem {
             //打开群聊
+            startIView(GroupChatUIView(dataBean.emGroup.groupId, dataBean.emGroup.groupName))
         }
     }
 }
