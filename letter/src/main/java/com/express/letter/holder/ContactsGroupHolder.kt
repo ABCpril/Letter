@@ -3,6 +3,7 @@ package com.express.letter.holder
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.express.letter.R
 import com.express.letter.bean.ContactsItem
+import com.express.letter.iview.group.GroupListUIView
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -19,6 +20,10 @@ class ContactsGroupHolder : BaseContactsHolder() {
     override fun onBindItemDataView(holder: RBaseViewHolder, posInData: Int, dataBean: ContactsItem) {
         super.onBindItemDataView(holder, posInData, dataBean)
         holder.imgV(R.id.glide_image_view).setImageResource(R.drawable.ico_group)
+
+        holder.clickItem {
+            startIView(GroupListUIView())
+        }
     }
 
 }

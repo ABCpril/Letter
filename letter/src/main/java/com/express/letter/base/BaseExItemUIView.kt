@@ -1,6 +1,10 @@
 package com.express.letter.base
 
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
 import com.angcyo.uiview.base.UIStringItemUIView
+import com.angcyo.uiview.widget.EmptyView
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -13,4 +17,10 @@ import com.angcyo.uiview.base.UIStringItemUIView
  * 修改备注：
  * Version: 1.0.0
  */
-abstract class BaseExItemUIView<T> : UIStringItemUIView<T>()
+abstract class BaseExItemUIView<T> : UIStringItemUIView<T>() {
+    override fun inflateLoadLayout(baseRootLayout: FrameLayout?, inflater: LayoutInflater?): View {
+        val emptyView: EmptyView = super.inflateLoadLayout(baseRootLayout, inflater) as EmptyView
+        emptyView.setShowType(EmptyView.SHOW_TYPE_2)
+        return emptyView
+    }
+}

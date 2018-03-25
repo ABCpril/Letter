@@ -1,6 +1,7 @@
 package com.express.letter.holder
 
 import android.text.TextUtils
+import com.angcyo.hyphenate.REMMessage
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
 import com.angcyo.uiview.widget.NoReadNumView
@@ -9,7 +10,6 @@ import com.express.letter.bean.ConversationItem
 import com.express.letter.chat.ChatUIView
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMConversation
-import com.hyphenate.chat.EMTextMessageBody
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -41,7 +41,7 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
         holder.tv(R.id.name_view).text = username //lastMessage.from
 
         //最后一条消息显示
-        holder.tv(R.id.tip_view).text = (lastMessage.body as EMTextMessageBody).message
+        holder.tv(R.id.tip_view).text = REMMessage.getMessageDigest(lastMessage)
 
         //消息时间显示
         holder.timeV(R.id.time_view).time = lastMessage.msgTime
