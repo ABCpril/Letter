@@ -41,7 +41,7 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
             holder.tv(R.id.tip_view).text = "${if (TextUtils.equals(REM.getCurrentUserName(), lastMessage.from)) "我" else lastMessage.from}" +
                     ":${REMMessage.getMessageDigest(lastMessage)}"
         } else if (conversation.type == EMConversation.EMConversationType.ChatRoom) {
-            holder.imageView(R.id.glide_image_view).setImageResource(R.drawable.default_avatar_nan)
+            holder.imageView(R.id.glide_image_view).setImageResource(R.drawable.ico_group_avatar)
 
             val room = EMClient.getInstance().chatroomManager().getChatRoom(username)
             username = if (room != null && !TextUtils.isEmpty(room.name)) room.name else username
@@ -50,6 +50,7 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
             holder.tv(R.id.tip_view).text = "${if (TextUtils.equals(REM.getCurrentUserName(), lastMessage.from)) "我" else lastMessage.from}" +
                     ":${REMMessage.getMessageDigest(lastMessage)}"
         } else {
+            holder.imageView(R.id.glide_image_view).setImageResource(R.drawable.default_avatar_nan)
 
             //最后一条消息显示
             holder.tv(R.id.tip_view).text = REMMessage.getMessageDigest(lastMessage)
@@ -66,10 +67,10 @@ class SessionHolder : RExItemHolder<ConversationItem>() {
 
         //点击跳转
         holder.clickItem {
-            if (conversation.type == EMConversation.EMConversationType.GroupChat) {
-                startIView(GroupChatUIView(conversation.conversationId(), username))
-            } else {
+            if (conversation.type == EMConversation.EMConversationType.Chat) {
                 startIView(ChatUIView(username))
+            } else {
+                startIView(GroupChatUIView(conversation.conversationId(), username))
             }
         }
     }

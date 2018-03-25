@@ -37,8 +37,14 @@ open class ChatUIView(val username: String,
     open fun onNewMessage(messages: MutableList<EMMessage>) {
         val list = (0 until messages.size)
                 .map { messages[it] }
-                .filter { TextUtils.equals(it.from, username) }
-
+                .filter {
+                    if (type == EMConversation.EMConversationType.Chat) {
+                        TextUtils.equals(it.from, username)
+                    } else {
+                        TextUtils.equals(it.conversationId(), username)
+                    }
+                }
+        REMConversation.markAllMessagesAsRead(username)
         mExBaseAdapter.appendAllData(list)
         scrollToLastBottom()
     }

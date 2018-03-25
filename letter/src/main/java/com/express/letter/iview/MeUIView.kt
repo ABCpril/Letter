@@ -8,6 +8,7 @@ import com.angcyo.uiview.container.ContentLayout
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.RRecyclerView
+import com.express.letter.BuildConfig
 import com.express.letter.R
 import com.express.letter.base.BaseItemUIView
 import com.express.letter.http.BaseSubscriber
@@ -47,6 +48,12 @@ class MeUIView : BaseItemUIView() {
                             mParentILayout.replaceIView(LoginUIView())
                         }
                     })
+                }
+
+                if (BuildConfig.DEBUG) {
+                    holder.longClick(R.id.button_view) {
+                        val i = 1 / 0
+                    }
                 }
             }
 
