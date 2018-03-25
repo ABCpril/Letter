@@ -41,14 +41,9 @@ class ChatImageHolder : BaseChatHolder() {
 //            holder.tv(R.id.file_name_view).text = body.fileName
 //            holder.tv(R.id.file_size_view).text = RUtils.formatFileSize(body.fileSize)
 //
-//            holder.click(messageContentControlLayout) {
-//                val file = File(body.localUrl)
-//                if (file.exists()) {
-//                    RUtils.openFile(exItemUIView!!.mActivity, file)
-//                } else {
-//                    T_.error("请等待文件下载完成.")
-//                }
-//            }
+            holder.click(messageContentControlLayout) {
+
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import com.angcyo.hyphenate.REMMessage.removeMessageListener
 import com.angcyo.hyphenate.listener.REMMessageListener
 import com.angcyo.uiview.dialog.UIFileSelectorDialog
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
+import com.angcyo.uiview.utils.Tip
 import com.express.letter.BuildConfig
 import com.express.letter.R
 import com.express.letter.base.BaseChatUIView
@@ -119,8 +120,12 @@ open class ChatUIView(val username: String,
         items.add(CommandItem(R.drawable.ease_chat_image_normal, "图片", View.OnClickListener {
             ImagePickerHelper.startImagePicker(mActivity, true, 9, ImageDataSource.IMAGE)
         }))
-        items.add(CommandItem(R.drawable.ease_chat_location_normal, "位置", View.OnClickListener { }))
-        items.add(CommandItem(R.drawable.em_chat_video_normal, "视频", View.OnClickListener { }))
+        items.add(CommandItem(R.drawable.ease_chat_location_normal, "位置", View.OnClickListener {
+            Tip.tip("暂不支持")
+        }))
+        items.add(CommandItem(R.drawable.em_chat_video_normal, "视频", View.OnClickListener {
+            Tip.tip("暂不支持")
+        }))
         items.add(CommandItem(R.drawable.em_chat_file_normal, "文件", View.OnClickListener {
             startIView(UIFileSelectorDialog {
                 addMessageToLast(REMMessage.sendFileMessage(it.absolutePath, username, isGroup()))
@@ -128,8 +133,12 @@ open class ChatUIView(val username: String,
         }))
 //        }
         if (type == EMConversation.EMConversationType.Chat) {
-            items.add(CommandItem(R.drawable.em_chat_voice_call_normal, "语音电话", View.OnClickListener { }))
-            items.add(CommandItem(R.drawable.em_chat_video_call_normal, "视频通话", View.OnClickListener { }))
+            items.add(CommandItem(R.drawable.em_chat_voice_call_normal, "语音电话", View.OnClickListener {
+                Tip.tip("暂不支持")
+            }))
+            items.add(CommandItem(R.drawable.em_chat_video_call_normal, "视频通话", View.OnClickListener {
+                Tip.tip("暂不支持")
+            }))
         }
         return items
     }
