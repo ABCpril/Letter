@@ -14,4 +14,5 @@ apply plugin: 'realm-android'
 
 dependencies {
     implementation project(':RHyphenate')
+    implementation project(':RLibrary:imagepicker')
 }
