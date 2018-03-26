@@ -90,6 +90,10 @@ open class ChatUIView(val username: String,
 
     //点击发送消息按钮
     override fun onSendButtonClick() {
+        if (inputEditText.isEmpty) {
+            return
+        }
+
         val sendMessage = REMMessage.sendMessage(inputEditText.string(), username, type == EMConversation.EMConversationType.GroupChat)
         addMessageToLast(sendMessage)
 

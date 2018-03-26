@@ -6,6 +6,7 @@ import android.widget.ImageView
 import com.angcyo.hyphenate.REMMessage
 import com.angcyo.uiview.container.ContentLayout
 import com.angcyo.uiview.iview.UIChatIView
+import com.angcyo.uiview.kotlin.onDoubleTap
 import com.angcyo.uiview.kotlin.onEmptyText
 import com.angcyo.uiview.recycler.RRecyclerView
 import com.angcyo.uiview.recycler.adapter.RExItem
@@ -70,6 +71,9 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
 
     override fun afterInflateView(baseContentLayout: ContentLayout) {
         super.afterInflateView(baseContentLayout)
+        inputEditText.onDoubleTap {
+            onSendButtonClick()
+        }
         inputEditText.onEmptyText {
             if (it) {
                 mViewHolder.gone(sendButton)
