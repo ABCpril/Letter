@@ -1,5 +1,7 @@
 include ':letter'
 include ':RHyphenate'
+include ':RAmap'
+include ':RRealm'
 include ':RLibrary:uiview'
 include ':RLibrary:library'
 include ':RLibrary:rcode'

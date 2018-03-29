@@ -1,10 +1,12 @@
 package com.express.letter.iview
 
 import android.os.Bundle
+import android.view.View
 import com.angcyo.hyphenate.REM
 import com.angcyo.hyphenate.REMContacts
 import com.angcyo.realm.RRealm
 import com.angcyo.realm.bean.ContactInviteRealm
+import com.angcyo.uiview.container.UIParam
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.adapter.RBaseAdapter
 import com.angcyo.uiview.recycler.adapter.RExItem
@@ -49,12 +51,14 @@ open class ContactsUIView : BaseExItemUIView<ContactsItem>() {
         return true
     }
 
-    override fun onViewLoad() {
-        super.onViewLoad()
+    override fun onViewCreate(rootView: View?, param: UIParam?) {
+        super.onViewCreate(rootView, param)
         RRealm.where {
-            contactInviteRealmResults = it.where(ContactInviteRealm::class.java)
+            val realmResults = it.where(ContactInviteRealm::class.java)
                     .equalTo("to_username", REM.getCurrentUserName())
                     .findAll()
+
+            contactInviteRealmResults = realmResults
         }
     }
 

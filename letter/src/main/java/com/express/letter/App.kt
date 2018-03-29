@@ -1,8 +1,8 @@
 package com.express.letter
 
+import com.angcyo.amap.RAmap
 import com.angcyo.hyphenate.REM
 import com.angcyo.uiview.RApplication
-import com.angcyo.uiview.manager.RNotifier
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -19,5 +19,6 @@ class App : RApplication() {
     override fun onInit() {
         super.onInit()
         REM.init(this, BuildConfig.DEBUG)
+        RAmap.init(app)
     }
 }

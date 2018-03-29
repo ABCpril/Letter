@@ -3,6 +3,7 @@ package com.express.letter.chat
 import android.content.Intent
 import android.text.TextUtils
 import android.view.View
+import com.angcyo.amap.iview.RAmapUIView
 import com.angcyo.hyphenate.REMCallBack
 import com.angcyo.hyphenate.REMConversation
 import com.angcyo.hyphenate.REMMessage
@@ -125,10 +126,15 @@ open class ChatUIView(val username: String,
             ImagePickerHelper.startImagePicker(mActivity, true, 9, ImageDataSource.IMAGE)
         }))
         items.add(CommandItem(R.drawable.ease_chat_location_normal, "位置", View.OnClickListener {
-            Tip.tip("暂不支持")
+            //            startIView(AmapUIView {
+//                L.e("call: getCommandItems -> $it")
+//            })
+            startIView(RAmapUIView {
+                addMessageToLast(REMMessage.sendLocationMessage(it.latitude, it.longitude, it.address, username, isGroup()))
+            })
         }))
         items.add(CommandItem(R.drawable.em_chat_video_normal, "视频", View.OnClickListener {
-            Tip.tip("暂不支持")
+            ImagePickerHelper.startImagePicker(mActivity, false, 1, ImageDataSource.VIDEO)
         }))
         items.add(CommandItem(R.drawable.em_chat_file_normal, "文件", View.OnClickListener {
             startIView(UIFileSelectorDialog {
@@ -138,6 +144,7 @@ open class ChatUIView(val username: String,
 //        }
         if (type == EMConversation.EMConversationType.Chat) {
             items.add(CommandItem(R.drawable.em_chat_voice_call_normal, "语音电话", View.OnClickListener {
+                //startIView(RAmapUIView())
                 Tip.tip("暂不支持")
             }))
             items.add(CommandItem(R.drawable.em_chat_video_call_normal, "视频通话", View.OnClickListener {
