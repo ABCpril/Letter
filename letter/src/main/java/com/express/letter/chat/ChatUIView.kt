@@ -156,8 +156,12 @@ open class ChatUIView(val username: String,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        ImagePickerHelper.getImages(mActivity, requestCode, resultCode, data).map {
-            addMessageToLast(REMMessage.sendImageMessage(it, ImagePickerHelper.isOrigin(requestCode, resultCode, data), username, isGroup()))
+        ImagePickerHelper.getItems(mActivity, requestCode, resultCode, data).map {
+            if (it.loadType == ImageDataSource.VIDEO) {
+                addMessageToLast(REMMessage.sendVideoMessage(it.path, it.videoThumbPath, (it.videoDuration / 1000).toInt(), username, isGroup()))
+            } else {
+                addMessageToLast(REMMessage.sendImageMessage(it.path, ImagePickerHelper.isOrigin(requestCode, resultCode, data), username, isGroup()))
+            }
         }
     }
 

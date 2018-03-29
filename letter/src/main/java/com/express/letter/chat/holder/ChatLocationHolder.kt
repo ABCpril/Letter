@@ -16,7 +16,7 @@ class ChatLocationHolder : BaseChatHolder() {
         (dataBean.body as EMLocationMessageBody?)?.let { body ->
             holder.tv(R.id.text_view).text = body.address
 
-            holder.clickItem {
+            holder.click(messageContentControlLayout) {
                 startIView(RAmapUIView(LatLng(body.latitude, body.longitude)))
             }
         }

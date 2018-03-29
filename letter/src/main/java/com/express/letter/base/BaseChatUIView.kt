@@ -44,7 +44,7 @@ open class BaseChatUIView : UIChatIView<String, EMMessage>() {
         allRegItems.add(RExItem(REMMessage.M_TYPE_FILE, R.layout.base_chat_item_layout, ChatFileHolder::class.java))
         allRegItems.add(RExItem(REMMessage.M_TYPE_IMAGE, R.layout.base_chat_item_layout, ChatImageHolder::class.java))
         allRegItems.add(RExItem(REMMessage.M_TYPE_CMD, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
-        allRegItems.add(RExItem(REMMessage.M_TYPE_VIDEO, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
+        allRegItems.add(RExItem(REMMessage.M_TYPE_VIDEO, R.layout.base_chat_item_layout, ChatVideoHolder::class.java))
         allRegItems.add(RExItem(REMMessage.M_TYPE_VOICE, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
         allRegItems.add(RExItem(REMMessage.M_TYPE_LOCATION, R.layout.base_chat_item_layout, ChatLocationHolder::class.java))
         allRegItems.add(RExItem(REMMessage.EX_TYPE, R.layout.base_chat_item_layout, BaseChatHolder::class.java))
