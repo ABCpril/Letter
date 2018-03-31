@@ -1,17 +1,21 @@
 package com.express.letter.iview
 
 import android.graphics.Color
+import android.view.Gravity
 import com.angcyo.hyphenate.REM
 import com.angcyo.uiview.base.Item
 import com.angcyo.uiview.base.SingleItem
 import com.angcyo.uiview.container.ContentLayout
+import com.angcyo.uiview.dialog.UILoading
 import com.angcyo.uiview.model.TitleBarPattern
 import com.angcyo.uiview.recycler.RBaseViewHolder
 import com.angcyo.uiview.recycler.RRecyclerView
+import com.angcyo.uiview.utils.T_
 import com.express.letter.BuildConfig
 import com.express.letter.R
 import com.express.letter.base.BaseItemUIView
 import com.express.letter.http.BaseSubscriber
+import com.express.letter.util.RHawk
 
 /**
  * Copyright (C) 2016,深圳市红鸟网络科技股份有限公司 All rights reserved.
@@ -53,6 +57,14 @@ class MeUIView : BaseItemUIView() {
                 if (BuildConfig.DEBUG) {
                     holder.longClick(R.id.button_view) {
                         val i = 1 / 0
+                    }
+                }
+
+                holder.click(R.id.sdk_check_item) {
+                    UILoading.flow(mParentILayout).setLoadingTipText("正在诊断...")
+                    REM.check(RHawk.saveLoginUser, RHawk.loginPassword) {
+                        T_.info(it, Gravity.LEFT)
+                        UILoading.hide()
                     }
                 }
             }

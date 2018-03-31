@@ -42,7 +42,7 @@ class LoginUIView : BaseItemUIView() {
                         }
                     })
                 }
-                username.setInputText(RHawk.getLoginUser())
+                username.setInputText(RHawk.saveLoginUser)
 
                 holder.click(R.id.login_button) {
 
@@ -59,7 +59,8 @@ class LoginUIView : BaseItemUIView() {
                                     override fun onSucceed(bean: String?) {
                                         super.onSucceed(bean)
                                         //Tip.tip("登录成功")
-                                        RHawk.saveLoginUser(username.string())
+                                        RHawk.saveLoginUser = username.string()
+                                        RHawk.loginPassword = password.string()
                                         //finishIView()
                                         replaceIView(MainUIView())
                                     }

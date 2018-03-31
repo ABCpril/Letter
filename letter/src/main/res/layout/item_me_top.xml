@@ -4,29 +4,45 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <com.angcyo.uiview.viewgroup.RLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/base_bg_selector_v21"
-        android:orientation="horizontal"
-        android:padding="@dimen/base_xhdpi"
-        app:r_background="@color/base_chat_bg_color">
+        android:orientation="vertical">
 
-        <com.angcyo.uiview.widget.GlideImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_avatar_nan"/>
-
-        <com.angcyo.uiview.widget.RTextView
-            android:id="@+id/user_name"
-            style="@style/BaseMainTextStyle"
-            android:layout_width="wrap_content"
+        <com.angcyo.uiview.viewgroup.RLinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/base_xhdpi"/>
+            android:background="@drawable/base_bg_selector_v21"
+            android:orientation="horizontal"
+            android:padding="@dimen/base_xhdpi"
+            app:r_background="@color/base_chat_bg_color">
 
-    </com.angcyo.uiview.viewgroup.RLinearLayout>
+            <com.angcyo.uiview.widget.GlideImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar_nan"/>
+
+            <com.angcyo.uiview.widget.RTextView
+                android:id="@+id/user_name"
+                style="@style/BaseMainTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/base_xhdpi"/>
+
+        </com.angcyo.uiview.viewgroup.RLinearLayout>
+
+        <com.angcyo.uiview.widget.ItemInfoLayout
+            android:id="@+id/sdk_check_item"
+            style="@style/BaseItemInfoStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_xhdpi"
+            app:item_text="SDK接口诊断"
+            app:r_draw_line="BOTTOM_TOP"/>
+
+    </LinearLayout>
 
     <com.angcyo.uiview.widget.Button
         android:id="@+id/button_view"
