@@ -20,8 +20,8 @@ import com.express.letter.util.RHawk
  */
 class LoginUIView : BaseItemUIView() {
 
-    override fun getTitleBar(): TitleBarPattern {
-        return super.getTitleBar()
+    override fun getTitleBar(): TitleBarPattern? {
+        return super.getTitleBar()!!
                 .setTitleString("登录")
     }
 

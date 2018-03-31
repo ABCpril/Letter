@@ -13,7 +13,7 @@ import com.express.letter.R
  */
 abstract class BaseItemUIView : UIItemUIView<SingleItem>() {
 
-    override fun getTitleBar(): TitleBarPattern {
+    override fun getTitleBar(): TitleBarPattern? {
         return super.getTitleBar()
                 .setShowTitleBarBottomShadow(true)
     }

@@ -26,8 +26,8 @@ class NewGroupUIVIew : BaseItemUIView() {
     lateinit var groupNameView: ExEditText
     lateinit var groupDesView: ExEditText
 
-    override fun getTitleBar(): TitleBarPattern {
-        return super.getTitleBar()
+    override fun getTitleBar(): TitleBarPattern? {
+        return super.getTitleBar()!!
                 .setTitleString("创建群聊")
                 .addRightItem(TitleBarItem.build("创建") {
                     if (groupNameView.checkEmpty()) {

@@ -30,8 +30,8 @@ import com.express.letter.util.RHawk
  */
 class MeUIView : BaseItemUIView() {
 
-    override fun getTitleBar(): TitleBarPattern {
-        return super.getTitleBar().setTitleString("我")
+    override fun getTitleBar(): TitleBarPattern? {
+        return super.getTitleBar()!!.setTitleString("我")
                 .setShowTitleBarBottomShadow(false)
     }
 

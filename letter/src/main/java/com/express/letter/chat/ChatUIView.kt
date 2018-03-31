@@ -12,12 +12,13 @@ import com.angcyo.hyphenate.REMMessage.removeMessageListener
 import com.angcyo.hyphenate.listener.REMMessageListener
 import com.angcyo.uiview.dialog.UIFileSelectorDialog
 import com.angcyo.uiview.recycler.adapter.RExItemHolder
-import com.angcyo.uiview.utils.Tip
 import com.express.letter.BuildConfig
 import com.express.letter.R
 import com.express.letter.base.BaseChatUIView
 import com.express.letter.chat.emoji.CommandItem
 import com.express.letter.chat.holder.BaseChatHolder
+import com.express.letter.iview.call.VideoCallUIView
+import com.express.letter.iview.call.VoiceCallUIView
 import com.hyphenate.chat.EMConversation
 import com.hyphenate.chat.EMMessage
 import com.lzy.imagepicker.ImageDataSource
@@ -144,11 +145,18 @@ open class ChatUIView(val username: String,
 //        }
         if (type == EMConversation.EMConversationType.Chat) {
             items.add(CommandItem(R.drawable.em_chat_voice_call_normal, "语音电话", View.OnClickListener {
-                //startIView(RAmapUIView())
-                Tip.tip("暂不支持")
+                startIView(VoiceCallUIView(username).apply {
+                    onSaveMessage = {
+                        addMessageToLast(it)
+                    }
+                })
             }))
             items.add(CommandItem(R.drawable.em_chat_video_call_normal, "视频通话", View.OnClickListener {
-                Tip.tip("暂不支持")
+                startIView(VideoCallUIView(username).apply {
+                    onSaveMessage = {
+                        addMessageToLast(it)
+                    }
+                })
             }))
         }
         return items

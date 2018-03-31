@@ -24,8 +24,8 @@ import com.express.letter.base.BaseItemUIView
  */
 class AddContactsUIView : BaseItemUIView() {
 
-    override fun getTitleBar(): TitleBarPattern {
-        return super.getTitleBar().setTitleString("添加好友")
+    override fun getTitleBar(): TitleBarPattern? {
+        return super.getTitleBar()!!.setTitleString("添加好友")
     }
 
     override fun createItems(items: MutableList<SingleItem>) {

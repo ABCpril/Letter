@@ -22,8 +22,8 @@ class RegisterUIView : BaseItemUIView() {
 
     var onRegisterSuccess: ((String) -> Unit)? = null
 
-    override fun getTitleBar(): TitleBarPattern {
-        return super.getTitleBar()
+    override fun getTitleBar(): TitleBarPattern? {
+        return super.getTitleBar()!!
                 .setTitleString("注册")
     }
 
