@@ -3,6 +3,7 @@ package com.express.letter.iview
 import android.graphics.Color
 import android.view.Gravity
 import com.angcyo.hyphenate.REM
+import com.angcyo.realm.RRealm
 import com.angcyo.uiview.base.Item
 import com.angcyo.uiview.base.SingleItem
 import com.angcyo.uiview.container.ContentLayout
@@ -73,5 +74,10 @@ class MeUIView : BaseItemUIView() {
                 return R.layout.item_me_top
             }
         })
+
+        RRealm.where {
+//            val findAll = it.where(RealmTest::class.java).findAll()
+//            L.e("call: createItems -> ${findAll.size}")
+        }
     }
 }

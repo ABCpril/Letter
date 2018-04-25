@@ -85,7 +85,7 @@ class SessionUIView : BaseExItemUIView<ConversationItem>() {
 
     override fun onViewShowNotFirst(bundle: Bundle?) {
         super.onViewShowNotFirst(bundle)
-        onBaseLoadData()
+        loadData()
     }
 
     override fun onViewLoad() {

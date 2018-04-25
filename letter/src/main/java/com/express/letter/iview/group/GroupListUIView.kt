@@ -2,6 +2,7 @@ package com.express.letter.iview.group
 
 import android.os.Bundle
 import com.angcyo.hyphenate.REMGroupManager
+import com.angcyo.uiview.recycler.adapter.RExBaseAdapter
 import com.angcyo.uiview.recycler.adapter.RExItem
 import com.express.letter.R
 import com.express.letter.base.BaseExItemUIView
@@ -49,6 +50,11 @@ class GroupListUIView : BaseExItemUIView<GroupItem>() {
     override fun onViewShowNotFirst(bundle: Bundle?) {
         super.onViewShowNotFirst(bundle)
         onBaseLoadData()
+    }
+
+    override fun initAdapter(baseAdapter: RExBaseAdapter<String, GroupItem, String>) {
+        super.initAdapter(baseAdapter)
+        baseAdapter.isAutoEnableLoadMore = false
     }
 
     override fun onUILoadData(page: Int, extend: String?) {

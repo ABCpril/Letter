@@ -117,7 +117,7 @@ open class ChatUIView(val username: String,
     }
 
     /**是否是群聊*/
-    open fun isGroup() = type == EMConversation.EMConversationType.Chat
+    open fun isGroup() = type == EMConversation.EMConversationType.GroupChat
 
     override fun getCommandItems(): List<CommandItem> {
         val items = mutableListOf<CommandItem>()
